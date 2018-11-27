@@ -1,0 +1,2 @@
+solA = Dsolve[{v'[t]==PA/m-g, v[0]==v0},v[t],t]
+

@@ -1,0 +1,87 @@
+Clear[P1, A1, M1, g, u, M0]
+
+sol1 = DSolve[{v'[t] == (P1*A1)/M1 - g, v[0] == 0}, v[t], t]
+vsol1[t_] = v[t] /. sol1[[1]]
+h1[t_] = Integrate[vsol1[t], t]
+a1[t_] = D[vsol1[t], t]
+
+P1 = 3.4*10^5
+A1 = ((4.75*10^(-3))^2)*Pi
+M1 = 0.6889
+g = 9.81
+
+Plot[h1[t], {t, 0, 10.91}]
+Plot[vsol1[t], {t, 0, 10.91}]
+Plot[a1[t], {t, 0, 10.91}]
+
+
+sol2 = DSolve[{v'[t] == (2*A(P1-P2))/(M0-ρ1*ve*A*t), v[0] == 0}, v[t], t]
+vsol2[t_] = v[t] /. sol2[[1]]
+h2[t_] = Integrate[vsol2[t], t]
+a2[t_] = D[vsol2[t], t]
+
+P1 = 3.4*10^5
+P2 = 0
+ve = 26.07680962
+M2 = .1889
+M1 = .6889
+M0 = 1.8483812
+g = 9.81
+ρ1 = 1000
+A = ((4.75*10^(-3))^2)*Pi
+
+Plot[h2[t], {t, 0, 10.91}]
+Plot[vsol2[t], {t, 0, 10.91}]
+Plot[a2[t], {t, 0, 10.91}]
+
+sol3 = DSolve[{v'[t] == g - (k*C*v^2)/(M2), v[0] == 0}, v[t], t]
+vsol3[t_] = v[t] /. sol3[[1]]
+h3[t_] = Integrate[vsol3[t], t]
+a3[t_] = D[vsol3[t], t]
+
+ρ2 = 1.22
+A2 = ((.06)^2)*Pi
+k = ρ2*A2/2
+C = 0.1
+M2 = .1889
+ve = 26.07680962
+
+Plot[h3[t], {t, 0, 10.91}]
+Plot[vsol3[t], {t, 0, 10.91}]
+Plot[a3[t], {t, 0, 10.91}]
+
+
+w3 = vsol2[7.9]
+
+sol4 = DSolve[{v'[t] == g + (k*C*v^2)/(M2), v[0] == w3}, v[t], t]
+vsol4[t_] = v[t] /. sol4[[1]]
+h4[t_] = Integrate[vsol4[t], t]
+a4[t_] = D[vsol4[t], t]
+
+
+h1com[t_] := h1[t] /; t < t1 
+h2com[t_] := h2sol[t] /; t1 < t < t2
+h3com[t_] := h3sol[t] /; t2 < t < t3
+h4com[t_] := h4sol[t] /; t3 < t < t4
+
+g=9.81
+ρ1 = 1000
+ρ2 = 1.22
+M0 = 
+P1 = 3.4*10^5
+P2 = 0
+C = 0.1
+A1 = ((4.75*10^(-3))^2)*Pi
+d = .12
+A2 = ((.06)^2)*Pi
+M1 = 0.6889
+M2 = .1889
+M3 = .5
+u = 26.07680962
+t1 = 0.037674326
+t2 = 0.037674326+0.2705069712
+t3 = 7.9
+t4 = 10.91
+k = ρ2*A2/2
+
+Plot[vcom[_t],{t,0,10.91}]

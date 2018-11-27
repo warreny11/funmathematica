@@ -1,0 +1,7 @@
+data=csvread(‘warrenyR6.csv’);
+seldata = data selected with brush tool
+
+timedata=seldata(:,1);
+accdata=seldata(:,2);
+
+syms B C 

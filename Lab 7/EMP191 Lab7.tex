@@ -70,18 +70,18 @@
 \end{equation}
 {here is the derivation of $\frac{dM}{dt}$ for 0.27 seconds until depletion.}
 \begin{equation}
-    \frac{dM}{dt} = Area * v_{2} * 1000 = 1.84 kg/s  
+    \frac{dM}{dt} = Area_{nozzle} * v_{2} * 1000 = 1.84 kg/s  
 \end{equation}
 {Using the Rocket Equation and Newton's laws one can derive the differential equation for $\frac{dv}{dt}$.}
 \begin{equation}
-    \frac{dv}{dt} = -u*ln(\frac{M_{i}-\frac{dM}{dt}t}{M_{i}}) - gt
+    \frac{dv}{dt} = \frac{2A(P_{bottle} - P_{atm})}{M_{i} - \rho v_{e} A_{n} t} - g
 \end{equation}
 {The drag force equation is derived below: where $A_{b}$ is the area of the bottle cross section and $m_{e}$ is the mass of the empty rocket.}
 \begin{equation}
     mg \pm kv^2 = ma \rightarrow \quad g \pm \frac{kv^2}{m_{e}} = \frac{dv}{dt} \rightarrow \quad 
-    \frac{dv}{dt} = g \pm \frac{\rho_{a} A_{b}C_{d}v^2}{2m_{e}}
+    \frac{dv}{dt} = g \pm \frac{\rho_{a} A_{b}C_{d}v_{b}^2}{2m_{e}}
 \end{equation}
-
+{Where $v_{b}$ is the velocity of the bottle and $A_{b}$,$\rho_{a}$,$C_{d}$ are the Area of the bottle, the density of air, and the C constant of drag respectively.}
 \begin{figure}[H]
     %\includegraphics[width=\linewidth/4]{table.png}
 \end{figure}

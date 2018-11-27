@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  27 NOV 2018 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  27 NOV 2018 17:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/warren/Documents/Princeton/EGR191/Lab 7/EMP191 Lab7.tex"
-(/Users/warren/Documents/Princeton/EGR191/Lab 7/EMP191 Lab7.tex
+**"/Users/warren/Documents/Princeton/EGR191/Lab 8/EMP191 Lab8.tex"
+(/Users/warren/Documents/Princeton/EGR191/Lab 8/EMP191 Lab8.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
@@ -179,8 +179,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks22
 \@floatcapt=\box29
 )
-(./EMP191 Lab7.aux)
-\openout1 = `"EMP191 Lab7.aux"'.
+(./EMP191 Lab8.aux)
+\openout1 = `"EMP191 Lab8.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
@@ -297,7 +297,7 @@ e
 [1
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] (./EMP191 Lab7.aux) ) 
+[2] (./EMP191 Lab8.aux) ) 
 Here is how much of TeX's memory you used:
  3202 strings out of 492649
  46539 string characters out of 6129622
@@ -305,7 +305,7 @@ Here is how much of TeX's memory you used:
  7046 multiletter control sequences out of 15000+600000
  9402 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,25p,381b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,25p,385b,191s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
@@ -318,7 +318,7 @@ cm/cmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb>
-Output written on "EMP191 Lab7.pdf" (2 pages, 119498 bytes).
+Output written on "EMP191 Lab8.pdf" (2 pages, 118551 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

@@ -34,15 +34,16 @@ Plot[h2[t], {t, 0, 10.91}]
 Plot[vsol2[t], {t, 0, 10.91}]
 Plot[a2[t], {t, 0, 10.91}]
 
-sol3 = DSolve[{v'[t] == g - (k*C*v^2)/(M2), v[0] == 0}, v[t], t]
+sol3 = DSolve[{v'[t] == g - (k*c*(ve)^(2))/(M2), v[0] == 0}, v[t], t]
 vsol3[t_] = v[t] /. sol3[[1]]
 h3[t_] = Integrate[vsol3[t], t]
 a3[t_] = D[vsol3[t], t]
 
+g = c9.8
 ρ2 = 1.22
 A2 = ((.06)^2)*Pi
 k = ρ2*A2/2
-C = 0.1
+c = 0.5
 M2 = .1889
 ve = 26.07680962
 

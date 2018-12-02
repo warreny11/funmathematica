@@ -1,7 +1,43 @@
-sol = NDSolve[{V'[t] == A*Sqrt[(2*P0(V0/V[t])^(g1)-P2)/ρ2], V[0]==0}, V[t], {t,0,4}]
-P0 = 3.4*10^5
-P2 = 0 
-ρ2 = 1000
-g1 = 5/7
-A = ((4.75*10^(-3))^2)*Pi
-V0 = 0.0015
+A  = \[Pi]*( 0.0095*.5)^2
+P0 = (50/14.7 + 1)*10^5
+V0 = .0015
+\[Gamma] = 7/5
+\[Rho]2 = 1000
+\[Rho]1 = 1.22
+P1 = 10^5
+
+sol1 = NDSolve[{V'[t] == 
+    A*(Sqrt[(2*(P0*(V0/V[t])^\[Gamma]) - P1)/\[Rho]2]), V[0] == V0}, 
+  V[t], {t, 0, 1}]
+
+
+V[t_] = V[t] /. sol1[[1]]
+
+T[t_] = (\[Rho]2/(A))*V'[t]^2 
+
+
+g = 9.81
+m[t_] = m0 - V'[t]*\[Rho]2*t 
+m0 = .6889
+c = .2
+A = \[Pi]*( 0.0095*.5)^2
+\[Rho]1 = 1.22
+k = A*c*\[Rho]1*.5
+\[Theta] = .2
+
+Velocities = 
+ NDSolve[{m[t]*vy'[t] == 
+    T[t]*Cos[\[Theta]] - m[t]*g - 
+     k*(vx[t]^2 + vy[t]^2)*Cos[\[Theta]], (m[t])*vx'[t] == 
+    T[t]*Sin[\[Theta]] - k*(vx[t]^2 + vy[t]^2)*Sin[\[Theta]], 
+   vy[0] == 26, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
+
+
+vxsol[t_] = vx[t] /. Velocities[[1]]
+vysol[t_] = vy[t] /. Velocities[[1]]
+
+hx[t_] = Integrate[vxsol[t], t]
+hy[t_] = Integrate[vysol[t], t]
+
+ax[t_]  = D[vxsol[t], t]
+ay[t_] = D[vysol[t], t]

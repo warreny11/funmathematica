@@ -66,11 +66,11 @@
 \end{equation}
 {where $v_{2}$ is the exit velocity of the water from the rocket and $A_{n}$ is the area of the bottle nozzle.}
 \begin{equation}
-    v_{2} = \sqrt{\frac{2(4.40*10^5- 10^5)}{1000}} = 26.07m/s
+    v_{e} = \sqrt{\frac{2(4.40*10^5- 10^5)}{1000}} = 26.07m/s
 \end{equation}
 {here is the derivation of $\frac{dM}{dt}$ for 0.27 seconds until depletion.}
 \begin{equation}
-    \frac{dM}{dt} = Area_{nozzle} * v_{2} * 1000 = 1.84 kg/s  
+    \frac{dM}{dt} = Area_{nozzle} * v_{e} * 1000 = 1.84 kg/s  
 \end{equation}
 {Using the Rocket Equation and Newton's laws one can derive the differential equation for $\frac{dv}{dt}$.}
 \begin{equation}
@@ -78,7 +78,7 @@
 \end{equation}
 {The drag force equation is derived below: where $A_{b}$ is the area of the bottle cross section and $m_{e}$ is the mass of the empty rocket.}
 \begin{equation}
-    mg \pm kv^2 = ma \rightarrow \quad g \pm \frac{kv^2}{m_{e}} = \frac{dv}{dt} \rightarrow \quad 
+   -mg \mp kv^{2} = ma \rightarrow \quad g \pm \frac{kv^2}{m_{e}} = \frac{dv}{dt} \rightarrow \quad 
     \frac{dv}{dt} = g \pm \frac{\rho_{a} A_{b}C_{d}v_{b}^2}{2m_{e}}
 \end{equation}
 {Where $v_{b}$ is the velocity of the bottle and $A_{b}$,$\rho_{a}$,$C_{d}$ are the Area of the bottle, the density of air, and the C constant of drag respectively.}

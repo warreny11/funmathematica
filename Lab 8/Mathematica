@@ -1,3 +1,11 @@
+g = 9.81
+m0 = .6889
+c = .2
+A = \[Pi]*( 0.0095*.5)^2
+\[Rho]1 = 1.22
+k = A*c*\[Rho]1*.5
+\[Theta] = .2
+Fd = k*(vx[t]^2 + vy[t]^2)
 A  = \[Pi]*( 0.0095*.5)^2
 P0 = (50/14.7 + 1)*10^5
 V0 = .0015
@@ -5,39 +13,56 @@ V0 = .0015
 \[Rho]2 = 1000
 \[Rho]1 = 1.22
 P1 = 10^5
+L = .22
 
 sol1 = NDSolve[{V'[t] == 
     A*(Sqrt[(2*(P0*(V0/V[t])^\[Gamma]) - P1)/\[Rho]2]), V[0] == V0}, 
   V[t], {t, 0, 1}]
 
-
 V[t_] = V[t] /. sol1[[1]]
 
 T[t_] = (\[Rho]2/(A))*V'[t]^2 
 
-
-g = 9.81
 m[t_] = m0 - V'[t]*\[Rho]2*t 
-m0 = .6889
-c = .2
-A = \[Pi]*( 0.0095*.5)^2
-\[Rho]1 = 1.22
-k = A*c*\[Rho]1*.5
-\[Theta] = .2
 
-Velocities = 
+
+Velocities1 = 
  NDSolve[{m[t]*vy'[t] == 
     T[t]*Cos[\[Theta]] - m[t]*g - 
-     k*(vx[t]^2 + vy[t]^2)*Cos[\[Theta]], (m[t])*vx'[t] == 
-    T[t]*Sin[\[Theta]] - k*(vx[t]^2 + vy[t]^2)*Sin[\[Theta]], 
+     Fd*Cos[\[Theta]], (m[t])*vx'[t] == 
+    T[t]*Sin[\[Theta]]-Fd*Sin[\[Theta]], 
    vy[0] == 26, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
 
+Velocities2 = 
+ NDSolve[{m[t]*vy'[t] == 
+     -m[t]*g-Fd*Cos[\[Phi]],(m[t])*vx'[t]==-Fd*Sin[\[Phi]], 
+   vy[0] == 26, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
 
-vxsol[t_] = vx[t] /. Velocities[[1]]
-vysol[t_] = vy[t] /. Velocities[[1]]
+\[Phi] = ArcCos[vy^2/(Sqrt[vy^2 + vx^2])]
 
-hx[t_] = Integrate[vxsol[t], t]
-hy[t_] = Integrate[vysol[t], t]
 
-ax[t_]  = D[vxsol[t], t]
-ay[t_] = D[vysol[t], t]
+vxsol1[t_] = vx[t] /. Velocities1[[1]]
+vysol1[t_] = vy[t] /. Velocities1[[1]]
+
+hx1[t_] = Integrate[vxsol1[t], t]
+hy1[t_] = Integrate[vysol1[t], t]
+
+ax1[t_]  = D[vxsol1[t], t]
+ay1[t_] = D[vysol1[t], t]
+
+tsol1 = Solve[hy1[t] == .22, t]
+
+vxsol2[t_] = vx[t] /. Velocities1[[1]]
+vysol2[t_] = vy[t] /. Velocities1[[1]]
+
+hx2[t_] = Integrate[vxsol2[t], t]
+hy2[t_] = Integrate[vysol2[t], t]
+
+ax2[t_]  = D[vxsol2[t], t]
+ay2[t_] = D[vysol2[t], t]
+
+t1 = 0.00837
+vcomm[t_]:=vxsol1[t1],vysol1[t1]/;t<t1
+accread = (ay+g)Cos[\[Theta]]+ax*Sin[\[Theta]]
+
+use rocketcalibration.mat in Lab6 file

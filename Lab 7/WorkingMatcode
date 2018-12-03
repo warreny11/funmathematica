@@ -1,10 +1,9 @@
 sol1 = DSolve[{v'[t] == (P1*A1)/M0 - g, v[0] == 0}, v[t], t]
 v1[t_] = v[t] /. sol1[[1]]
-h1[t_] = Integrate[v1[t], t]
+h1[t_] = Integrate[v1[t], t] 
 a1[t_] = D[v1[t], t]
 
-t1 = Solve[h1[t] == L, t]
-vi1 = Simplify[v1[t] /. t1[[2]]]
+t1 = .111389
 
 L = .22
 A1 = ((4.75*10^(-3))^2)*Pi
@@ -14,14 +13,12 @@ g = 9.81
 
 sol2 = DSolve[{v'[t] == (2*A1(P1-P2))/(M0-ρ1*ve*A1*t)-g, v[0] == 3.95012}, v[t], t]
 v2[t_] = v[t] /. sol2[[1]]
-h2[t_] = Integrate[v2[t], t]
+h2[t_] = Integrate[v2[t], t] + h1[t1]
 a2[t_] = D[v2[t], t]
 
 
 
-t2 = Solve[M[t] == 0, t]
-vi2 = Simplify[v2[t] /. t2[[1]]]
-
+t2 = 0.2705069712
 
 A1 = ((4.75*10^(-3))^2)*Pi
 M0 = 0.6889
@@ -32,14 +29,10 @@ ve = 26.07680962
 sol3 = DSolve[{v'[t] == -g - (k*c*(v[t])^(2))/(M2), v[0] == 41.0204}, v[t],
    t]
 v3[t_] = v[t] /. sol3[[1]]
-h3[t_] = Integrate[v3[t], t]
+h3[t_] = Integrate[v3[t], t] + h2[t2]
 a3[t_] = D[v3[t], t]
 
-
-Clear[A1, M0, ve]
-
-t3 = Solve[v3[t] == 0, t]
-vi3 = Simplify[v3[t] /. t3[[1]]]
+t3 = 2.14934
 
 \[Rho]2 = 1.22
 g = 9.81
@@ -51,11 +44,11 @@ k = \[Rho]2*A2/2
 sol4 = DSolve[{v'[t] == -g + (k*c*(v[t])^2)/(M2), v[0] == 0}, v[t], 
   t]
 v4[t_] = v[t] /. sol4[[1]]
-h4[t_] = Integrate[v4[t], t]
+h4[t_] = Integrate[v4[t], t] + h3[t3]
 a4[t_] = D[v4[t], t]
 
 t4 = Solve[h4[t] == 0, t]
-vi4 = Simplify[h4[t] /. t4[[2]]]
+vi4 = Simplify[h4[t] /. t4[[1]]]
 
 
 P1 = 4.4*10^5
@@ -100,3 +93,15 @@ Plot[h4[t] - h4[0], {t, 0, 5}]
 Plot[v4[t], {t, 0, 10.91}]
 
 Plot[a4[t], {t, 0, 10.91}]
+
+t1 = 0.111389
+t2 = t1 + 0.2705069712
+t3 = t2 + 2.14934
+t4 = t3 + 10
+
+hcom[t_] := h1[t] /; t < t1 
+hcom[t_] := h2[t] /; t1 < t < t2
+hcom[t_] := h3[t] /; t2 < t < t3
+hcom[t_] := h4[t] /; t3 < t < t4
+
+Plot[hcom[t], {t, 0, 10}]

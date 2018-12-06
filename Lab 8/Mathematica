@@ -1,11 +1,12 @@
 g = 9.81
 m0 = .6889
+m1 = .1889
 c = .2
 A = \[Pi]*( 0.0095*.5)^2
 \[Rho]1 = 1.22
 k = A*c*\[Rho]1*.5
 \[Theta] = .2
-Fd = k*(vx[t]^2 + vy[t]^2)
+Fd[t_] = k*(vx[t]^2 + vy[t]^2)
 A  = \[Pi]*( 0.0095*.5)^2
 P0 = (50/14.7 + 1)*10^5
 V0 = .0015
@@ -33,12 +34,12 @@ Velocities1 =
     T[t]*Sin[\[Theta]]-Fd*Sin[\[Theta]], 
    vy[0] == 26, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
 
-Velocities2 = 
- NDSolve[{m[t]*vy'[t] == 
-     -m[t]*g-Fd*Cos[\[Phi]],(m[t])*vx'[t]==-Fd*Sin[\[Phi]], 
-   vy[0] == 26, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
+\[Phi][t_] = ArcCos[vy[t]^2/(Sqrt[vy[t]^2 + vx[t]^2])]
 
-\[Phi] = ArcCos[vy^2/(Sqrt[vy^2 + vx^2])]
+Velocities2 = 
+ NDSolve[{m1*vy'[t] == 
+     -m1*g-Fd*Cos[\[Phi]],m1*vx'[t]==-Fd*Sin[\[Phi]], 
+   vy[0] == v0, vx[0] == 0}, {vy[t], vx[t]}, {t, 0, 1}]
 
 
 vxsol1[t_] = vx[t] /. Velocities1[[1]]
@@ -52,6 +53,10 @@ ay1[t_] = D[vysol1[t], t]
 
 tsol1 = Solve[hy1[t] == .22, t]
 
+t1 = tsol1[[1]]
+t1 = t /. t1 
+v0 = vysol1[t1]
+
 vxsol2[t_] = vx[t] /. Velocities1[[1]]
 vysol2[t_] = vy[t] /. Velocities1[[1]]
 
@@ -61,7 +66,6 @@ hy2[t_] = Integrate[vysol2[t], t]
 ax2[t_]  = D[vxsol2[t], t]
 ay2[t_] = D[vysol2[t], t]
 
-t1 = 0.00837
 vcomm[t_]:=vxsol1[t1],vysol1[t1]/;t<t1
 accread = (ay+g)Cos[\[Theta]]+ax*Sin[\[Theta]]
 
